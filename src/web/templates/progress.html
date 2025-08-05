@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Research in Progress - AI Newsletter Tool</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -12,8 +15,8 @@
         }
         
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0f766e 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -22,13 +25,15 @@
         }
         
         .container {
-            background: white;
-            padding: 40px;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            max-width: 600px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 50px;
+            border-radius: 24px;
+            box-shadow: 0 32px 64px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.1);
+            max-width: 650px;
             width: 100%;
             text-align: center;
+            border: 1px solid rgba(255,255,255,0.2);
         }
         
         .header {
@@ -36,9 +41,14 @@
         }
         
         .header h1 {
-            color: #333;
-            font-size: 2.2rem;
-            margin-bottom: 10px;
+            background: linear-gradient(135deg, #0f766e, #0284c7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-size: 2.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
         }
         
         .status-container {
@@ -56,10 +66,11 @@
         
         .progress-fill {
             height: 100%;
-            background: linear-gradient(90deg, #667eea, #764ba2);
+            background: linear-gradient(90deg, #0ea5e9, #0284c7, #0f766e);
             width: 0%;
             transition: width 0.5s ease;
             border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(14, 165, 233, 0.3);
         }
         
         .status-text {
@@ -71,13 +82,15 @@
         
         .spinner {
             display: inline-block;
-            width: 40px;
-            height: 40px;
-            border: 4px solid #e1e5e9;
+            width: 44px;
+            height: 44px;
+            border: 4px solid rgba(226, 232, 240, 0.3);
             border-radius: 50%;
-            border-top-color: #667eea;
+            border-top-color: #0ea5e9;
+            border-right-color: #0284c7;
             animation: spin 1s ease-in-out infinite;
             margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(14, 165, 233, 0.2);
         }
         
         @keyframes spin {
@@ -105,30 +118,35 @@
         
         .back-btn {
             display: none;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 50%, #0f766e 100%);
             color: white;
-            padding: 12px 30px;
+            padding: 14px 32px;
             border: none;
-            border-radius: 8px;
+            border-radius: 12px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             text-decoration: none;
             display: inline-block;
-            margin-top: 20px;
-            transition: transform 0.2s ease;
+            margin-top: 24px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 14px rgba(14, 165, 233, 0.25);
         }
         
         .back-btn:hover {
-            transform: translateY(-2px);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(14, 165, 233, 0.35);
+            background: linear-gradient(135deg, #0284c7 0%, #0369a1 50%, #0d9488 100%);
         }
         
         .info-box {
-            background-color: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-top: 30px;
+            background: linear-gradient(135deg, rgba(248, 250, 252, 0.9), rgba(241, 245, 249, 0.9));
+            padding: 24px;
+            border-radius: 16px;
+            margin-top: 32px;
             text-align: left;
+            border: 1px solid rgba(226, 232, 240, 0.6);
+            backdrop-filter: blur(5px);
         }
         
         .info-box h3 {
@@ -149,7 +167,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>🔍 Research in Progress</h1>
+            <h1>⚡ Research in Progress</h1>
             <p>Our AI agents are working on your research request...</p>
         </div>
         

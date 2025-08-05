@@ -125,6 +125,7 @@ class Agent:
         
         # If we have tools, use them first
         tool_results = ""
+        email_tool = None
         if self.tools:
             for tool in self.tools:
                 if isinstance(tool, WebSearchTool):
@@ -132,7 +133,7 @@ class Agent:
                     search_result = await tool.search(user_input)
                     tool_results += f"\nSearch Results:\n{search_result}\n"
                 elif callable(tool):  # For email tool
-                    # Don't execute email tool here, just note it's available
+                    email_tool = tool
                     tool_results += "\nEmail tool is available for sending emails.\n"
         
         # Combine input with tool results
@@ -164,6 +165,36 @@ class Agent:
             )
             
             raw_response = response.choices[0].message.content
+            
+            # If this is an email agent with an email tool, execute the email sending
+            if email_tool and "email" in self.name.lower():
+                try:
+                    # Extract subject and HTML content from the response
+                    # Look for HTML content in the response
+                    html_match = re.search(r'<html.*?</html>', raw_response, re.DOTALL | re.IGNORECASE)
+                    if html_match:
+                        html_content = html_match.group()
+                        # Try to extract subject from HTML title or create a default
+                        title_match = re.search(r'<title>(.*?)</title>', html_content, re.IGNORECASE)
+                        if title_match:
+                            subject = title_match.group(1)
+                        else:
+                            subject = "AI Research Report"
+                        
+                        print(f"[EMAIL AGENT] Sending email with subject: {subject}")
+                        print(f"[EMAIL AGENT] HTML content length: {len(html_content)} characters")
+                        
+                        # Call the email tool
+                        email_result = email_tool(subject, html_content)
+                        print(f"[EMAIL AGENT] Email send result: {email_result}")
+                        
+                        # Update response to include send result
+                        raw_response += f"\n\nEmail sent: {email_result}"
+                    else:
+                        print("[EMAIL AGENT] No HTML content found in response, not sending email")
+                except Exception as e:
+                    print(f"[EMAIL AGENT] Error sending email: {e}")
+                    raw_response += f"\n\nEmail sending failed: {str(e)}"
             
             # Parse output based on type
             if self.output_type:

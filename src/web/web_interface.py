@@ -20,6 +20,10 @@ def run_async_research(query, user_email):
     
     async def research_task():
         try:
+            # Ensure environment is loaded in this thread context
+            from dotenv import load_dotenv
+            load_dotenv(override=True)
+            
             research_status["is_running"] = True
             research_status["progress"] = "Planning searches..."
             research_status["completed"] = False

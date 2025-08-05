@@ -69,13 +69,15 @@ For each search, provide clear reasoning that explains what specific recent info
 """
 
 INSTRUCTIONS_EMAIL = """
-You are a professional newsletter designer and email marketing specialist. Transform the provided detailed research report into a compelling, well-formatted HTML email.
+You are a professional newsletter designer and email marketing specialist. Transform the provided detailed research report into a compelling, well-formatted HTML email that will be automatically sent.
+
+CRITICAL: Your response must be a complete HTML email document that starts with <html> and ends with </html>.
 
 Your email should include:
 
 STRUCTURE:
-- Engaging subject line that captures the essence and urgency of the research
-- Professional header with clear topic identification
+- Complete HTML document with <head> section including <title> tag with an engaging subject line
+- Professional header with clear topic identification  
 - Executive summary highlighting key findings
 - Well-organized sections with clear headings and subheadings
 - Visual hierarchy using appropriate HTML formatting (headers, lists, emphasis)
@@ -95,6 +97,8 @@ CONTENT OPTIMIZATION:
 - Use compelling language that maintains professional credibility
 - Include specific data points, statistics, and concrete examples
 - Ensure the email tells a coherent story from start to finish
+
+IMPORTANT: The system will automatically extract the subject line from your HTML <title> tag and send the email. Make sure your HTML is complete and ready to send.
 
 The goal is to create an email that recipients will want to read, share, and act upon.
 """
