@@ -1,0 +1,42 @@
+[project]
+name = "research-email"
+version = "0.1.0"
+description = "AI-powered research assistant that generates reports and sends them via email"
+requires-python = ">=3.8"
+
+dependencies = [
+    "agents",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
+    "sendgrid>=6.10.0",
+    "ipython>=8.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-asyncio>=0.21.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+
+[tool.ruff]
+line-length = 88
+target-version = "py38"
+select = ["E", "W", "F", "I", "B", "C4", "UP"]
+ignore = ["E501", "B008", "C901"]
+
+[tool.mypy]
+python_version = "3.8"
+check_untyped_defs = true
+ignore_missing_imports = true
+
+[tool.pytest.ini_options]
+minversion = "7.0"
+addopts = "-ra -q"
+asyncio_mode = "auto"
