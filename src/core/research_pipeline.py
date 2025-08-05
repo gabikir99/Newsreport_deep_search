@@ -40,10 +40,24 @@ async def write_report(query: str, search_results: List[str]) -> ReportData:
 
 async def send_report_email(report: ReportData) -> ReportData:
     """Use the email agent to send an email with the report"""
-    print("Writing email...")
-    result = await Runner.run(email_agent, report.markdown_report)
-    print("Email sent")
-    return report
+    try:
+        print("[PIPELINE] Starting email generation and sending...")
+        print(f"[PIPELINE] Report length: {len(report.markdown_report)} characters")
+        
+        # The email agent will process the markdown report and send it
+        result = await Runner.run(email_agent, report.markdown_report)
+        
+        print(f"[PIPELINE] Email agent result: {result.final_output}")
+        print("[PIPELINE] Email process completed")
+        
+        return report
+        
+    except Exception as e:
+        print(f"[PIPELINE ERROR] Failed to send email: {str(e)}")
+        import traceback
+        traceback.print_exc()
+        # Don't fail the whole pipeline, just log the error
+        return report
 
 
 async def run_research_pipeline(query: str) -> ReportData:
