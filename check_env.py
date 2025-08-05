@@ -9,7 +9,7 @@ from dotenv import load_dotenv
 
 def check_environment():
     """Check if all required environment variables are set"""
-    print("🔍 Checking environment setup...\n")
+    print("Checking environment setup...\n")
     
     # Load environment variables
     load_dotenv()
@@ -27,26 +27,26 @@ def check_environment():
         if value:
             # Show first 10 characters and mask the rest
             masked_value = value[:10] + '...' if len(value) > 10 else value
-            print(f"✅ {var_name}: {masked_value} ({description})")
+            print(f"[OK] {var_name}: {masked_value} ({description})")
         else:
-            print(f"❌ {var_name}: Not set ({description})")
+            print(f"[MISSING] {var_name}: Not set ({description})")
             all_good = False
     
     print("\n" + "="*50)
     
     if all_good:
-        print("🎉 All environment variables are set correctly!")
+        print("SUCCESS: All environment variables are set correctly!")
         print("You can now run:")
-        print("  • uv run python run_web.py (web interface)")
-        print("  • uv run python run_cli.py (command line)")
+        print("  - uv run python run_web.py (web interface)")
+        print("  - uv run python run_cli.py (command line)")
     else:
-        print("⚠️  Missing environment variables!")
+        print("WARNING: Missing environment variables!")
         print("\nPlease create a .env file in the project root with:")
         print("OPENAI_API_KEY=your_openai_api_key_here")
         print("SENDGRID_API_KEY=your_sendgrid_api_key_here")
         print("\nGet your keys from:")
-        print("• OpenAI: https://platform.openai.com/api-keys")
-        print("• SendGrid: https://app.sendgrid.com/settings/api_keys")
+        print("- OpenAI: https://platform.openai.com/api-keys")
+        print("- SendGrid: https://app.sendgrid.com/settings/api_keys")
 
 if __name__ == "__main__":
     check_environment()
