@@ -1,8 +1,8 @@
 import asyncio
 from typing import List
-from agents import Runner
-from models import WebSearchPlan, WebSearchItem, ReportData
-from agents_config import search_agent, planner_agent, writer_agent, email_agent
+from src.agents.custom_agents import Runner
+from src.core.models import WebSearchPlan, WebSearchItem, ReportData
+from src.config.agents_config import search_agent, planner_agent, writer_agent, email_agent
 
 
 async def plan_searches(query: str) -> WebSearchPlan:

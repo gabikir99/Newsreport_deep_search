@@ -1,5 +1,0 @@
-agents
-pydantic
-python-dotenv
-sendgrid
-ipython

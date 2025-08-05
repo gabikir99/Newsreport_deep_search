@@ -1,6 +1,18 @@
+#!/usr/bin/env python3
+"""
+CLI entry point for the AI Newsletter Research Tool.
+Run this file to use the command-line interface.
+"""
+
+import sys
+import os
 import asyncio
 from dotenv import load_dotenv
-from research_pipeline import run_research_pipeline, send_report_email
+
+# Add the project root to Python path for imports
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+
+from src.core.research_pipeline import run_research_pipeline, send_report_email
 
 # Try to import IPython for display functionality
 try:

@@ -1,7 +1,12 @@
 from datetime import datetime, timedelta
-from agents import Agent, WebSearchTool, ModelSettings
-from models import WebSearchPlan, ReportData
-from email_service import send_email
+from dotenv import load_dotenv
+
+# Load environment variables first
+load_dotenv()
+
+from src.agents.custom_agents import Agent, WebSearchTool, Runner
+from src.core.models import WebSearchPlan, ReportData
+from src.core.email_service import send_email
 
 # Configuration
 HOW_MANY_SEARCHES = 5
@@ -130,7 +135,6 @@ search_agent = Agent(
     instructions=INSTRUCTIONS_SEARCH,
     tools=[WebSearchTool(search_context_size="low")],
     model="gpt-4o-mini",
-    model_settings=ModelSettings(tool_choice="required"),
 )
 
 planner_agent = Agent(
